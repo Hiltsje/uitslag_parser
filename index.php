@@ -11,9 +11,7 @@ $rows        = explode("\n", $txt_file);
 
 foreach($rows as $row => $data) {
 
-
 	$row_data = preg_split("/\s+/", $data);
-
 
 	$info[$row]['whitespace'] = $row_data[0];
 	$info[$row]['place'] = $row_data[1];
