@@ -9,17 +9,30 @@
 $txt_file    = file_get_contents('Zutphen V15 10-4-15.txt');
 $rows        = explode("\n", $txt_file);
 
-foreach($rows as $row => $data) {
+foreach($rows as $row) {
 
-	$row_data = preg_split("/\s+/", $data);
+	$row_data = preg_match("/^\s+(\d+)\s(.{20})\s*(\d*|\d*[,]\d*)\s+(\d*|\d*.\d*)\s+(\d*)\s(.+?[A-Z{1}]?)\s+(\d+[.]\d+[.]\d+)\s*(\d*[,]\d*)\s+(\d+[,]\d)\s*$/", $row, $matches);
 
-	$info[$row]['whitespace'] = $row_data[0];
-	$info[$row]['place'] = $row_data[1];
-	$info[$row]['initials'] = $row_data[2];
-	$info[$row]['name'] = $row_data[3];
-	$info[$row]['distance'] = $row_data[4];
+		$info[$row]['plaats'] = $matches[1];
+		$info[$row]['naam'] = $matches[2];
+		$info[$row]['afstand'] = $matches[3];
+		$info[$row]['adap'] = $matches[4];
+		$info[$row]['getekend'] = $matches[5];
+		$info[$row]['ring'] = $matches[6];
+		$info[$row]['tijd'] = $matches[7];
+		$info[$row]['snelheid'] = $matches[8];
+		$info[$row]['punten'] = $matches[9];
 
-	echo 'Row ' . $row . ' Place: ' . $info[$row]['place'] . '<br />';
-	echo 'Row ' . $row . ' Name: ' . $info[$row]['initials'] . $info[$row]['name'] . '<br />';
-	echo 'Row ' . $row . ' Distance: ' . $info[$row]['distance'] . '<br />';
+
+	echo ' Plaats: ' . $info[$row]['plaats'] . '<br />';
+	echo ' Naam: ' . $info[$row]['naam'] . '<br />';
+	echo ' Afstand: ' . $info[$row]['afstand'] . '<br />';
+	echo ' AD/AP: ' . $info[$row]['adap'] . '<br />';
+	echo ' Getekend: ' . $info[$row]['getekend'] . '<br />';
+	echo ' Ring: ' . $info[$row]['ring'] . '<br />';
+	echo ' Tijd: ' . $info[$row]['tijd'] . '<br />';
+	echo ' Snelheid: ' . $info[$row]['snelheid'] . '<br />';
+	echo ' Punten: ' . $info[$row]['punten'] . '<br />';
+	echo '<br />';
+
 }
