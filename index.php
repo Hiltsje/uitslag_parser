@@ -10,8 +10,9 @@ $txt_file    = file_get_contents('Zutphen V15 10-4-15.txt');
 $rows        = explode("\n", $txt_file);
 
 foreach($rows as $row) {
-
-	$row_data = preg_match("/^\s+(\d+)\s(.{20})\s*(\d*|\d*[,]\d*)\s+(\d*|\d*.\d*)\s+(\d*)\s(.+?[A-Z{1}]?)\s+(\d+[.]\d+[.]\d+)\s*(\d*[,]\d*)\s+(\d+[,]\d)\s*$/", $row, $matches);
+	//nieuwe reguliere expressie nog testen.
+	$row_data = preg_match("/^\s+(\d+)\s(.{20})\s*(\d*|\d*[,]\d*)\s+(\d*|\d*.\d*)\s+(\d*)\s(.+[A-Z]{0,1})\s+(\d+[.]\d+[.]\d+)\s*(\d*[,]\d*)\s+(\d+[,]\d)\s*$/", $row, $matches);
+	//$row_data = preg_match("/^\s+(\d+)\s(.{20})\s*(\d*|\d*[,]\d*)\s+(\d*|\d*.\d*)\s+(\d*)\s(.+?[A-Z{1}]?)\s+(\d+[.]\d+[.]\d+)\s*(\d*[,]\d*)\s+(\d+[,]\d)\s*$/", $row, $matches);
 
 		$info[$row]['plaats'] = $matches[1];
 		$info[$row]['naam'] = $matches[2];
